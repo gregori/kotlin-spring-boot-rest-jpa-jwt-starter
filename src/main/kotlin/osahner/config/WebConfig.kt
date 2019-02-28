@@ -28,6 +28,9 @@ class WebConfig(
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // no sessions
       .and()
       .authorizeRequests()
+      .antMatchers("/graphql").permitAll()
+      .antMatchers("/vendor/**").permitAll()
+      .antMatchers("/graphiql").permitAll()
       .antMatchers("/api/**").permitAll()
       .antMatchers("/error/**").permitAll()
       .antMatchers(HttpMethod.POST, "/login").permitAll()

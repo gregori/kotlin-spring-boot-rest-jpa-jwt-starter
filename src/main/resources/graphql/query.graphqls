@@ -1,0 +1,10 @@
+type Query {
+  # The API Version
+  version: String!
+
+  # Get person with ID
+  user(id: ID!): User
+
+  # Get persons by name
+  #userByRole(role: String!): [User]
+}
