@@ -66,6 +66,9 @@ spring:
     # init app_user, app_role
     initialization-mode: always
     continue-on-error: true
+graphql:
+  servlet:
+    exception-handlers-enabled: true
 ---
 spring:
   profiles: development

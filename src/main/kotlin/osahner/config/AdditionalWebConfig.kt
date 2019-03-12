@@ -6,6 +6,10 @@ import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory
+
+
 
 @Configuration
 class AdditionalWebConfig : WebMvcConfigurer {
@@ -31,5 +35,11 @@ class AdditionalWebConfig : WebMvcConfigurer {
     val source = UrlBasedCorsConfigurationSource()
     source.registerCorsConfiguration("/**", configuration)
     return source
+  }
+
+  // Avoid test graphql startup error
+  @Bean
+  fun servletWebServerFactory(): ServletWebServerFactory {
+    return TomcatServletWebServerFactory()
   }
 }

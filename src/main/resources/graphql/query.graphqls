@@ -6,5 +6,5 @@ type Query {
   user(id: ID!): User
 
   # Get persons by name
-  #userByRole(role: String!): [User]
+  # userByRole(role: String!): [User]
 }
