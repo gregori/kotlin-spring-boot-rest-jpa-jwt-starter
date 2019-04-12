@@ -1,10 +1,10 @@
 package osahner.security
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
-import org.slf4j.LoggerFactory
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -33,8 +33,10 @@ class JWTAuthenticationFilter(private val _authenticationManager: Authentication
     res: HttpServletResponse?
   ): Authentication {
     return try {
-      val creds = ObjectMapper()
-        .readValue(req.inputStream, osahner.domain.User::class.java)
+      val mapper = jacksonObjectMapper()
+
+      val creds = mapper
+        .readValue<osahner.domain.User>(req.inputStream)
 
       _authenticationManager.authenticate(
         UsernamePasswordAuthenticationToken(

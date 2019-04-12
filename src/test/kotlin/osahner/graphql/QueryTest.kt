@@ -11,16 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.exchange
+import org.springframework.boot.test.web.client.postForEntity
 import org.springframework.http.*
 import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
+@TestPropertySource(
+  properties = [
+    "spring.autoconfigure.exclude=com.oembedler.moon.graphql.boot.GraphQLWebAutoConfiguration",
+    "spring.autoconfigure.exclude=com.oembedler.moon.graphql.boot.GraphQLWebsocketAutoConfiguration"
+  ]
+)
 class GraphqlServiceApplicationTest(
   @Autowired private val restTemplate: TestRestTemplate
 ) {
+  val loginForm = hashMapOf("username" to "john.doe", "password" to "test1234")
+
   // FIXME https://github.com/graphql-java-kickstart/graphql-spring-boot/issues/132
 
   @Test
@@ -80,7 +90,13 @@ class GraphqlServiceApplicationTest(
       }
     """.trimIndent()
 
-    val request = forJson("""{"query":"$query","variables":null}""", HttpHeaders())
+    val login = restTemplate.postForEntity<String>("/login", loginForm)
+    val bearer = login.headers["authorization"]?.get(0).orEmpty()
+    val headers = HttpHeaders()
+    headers.contentType = MediaType.APPLICATION_JSON
+    headers["Authorization"] = bearer
+
+    val request = forJson("""{"query":"$query","variables":null}""", headers)
     val result = GraphQLResponse(restTemplate.exchange("/graphql", HttpMethod.POST, request, String::class))
 
     assertNotNull(result)

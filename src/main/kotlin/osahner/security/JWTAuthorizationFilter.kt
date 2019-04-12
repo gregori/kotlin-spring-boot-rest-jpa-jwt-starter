@@ -2,7 +2,6 @@ package osahner.security
 
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
-import org.slf4j.LoggerFactory
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.GrantedAuthority
@@ -20,7 +19,6 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class JWTAuthorizationFilter(authManager: AuthenticationManager) : BasicAuthenticationFilter(authManager) {
-  private var log = LoggerFactory.getLogger(JWTAuthorizationFilter::class.java)
 
   @Throws(IOException::class, ServletException::class)
   override fun doFilterInternal(
