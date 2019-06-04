@@ -58,7 +58,8 @@ class JWTAuthenticationFilter(private val _authenticationManager: Authentication
     auth: Authentication
   ) {
     val claims: MutableList<String> = mutableListOf()
-    auth.authorities!!.forEach { a -> claims.add(a.toString()) }
+    if (auth.authorities.isNotEmpty())
+      auth.authorities.forEach { a -> claims.add(a.toString()) }
 
     val token = Jwts.builder()
       .setSubject((auth.principal as User).username)
