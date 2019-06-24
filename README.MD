@@ -51,6 +51,7 @@ curl -H "Authorization: Bearer ******" http://localhost:4080/starter-test/actuat
 ```
 
 ### Changelog
+* _v0.5.1-SNAPSHOT_: spring-boot 2.2.0.M4 and kotlin 1.3.40
 * _v0.5.0-SNAPSHOT_: spring-boot 2.2.0.M1 and kotlin 1.3.30, add GraphQL
 * _v0.4.1-SNAPSHOT_: spring-boot 2.1.3 and kotlin 1.3.21, add codecov, fixed code style, fix tests, add coverage
 * _v0.3.1-SNAPSHOT_: update jdk11, spring-boot 2.1.2 and kotlin 1.3.20
