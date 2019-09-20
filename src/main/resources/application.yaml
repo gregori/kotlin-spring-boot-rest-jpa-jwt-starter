@@ -36,6 +36,8 @@ server:
   tomcat:
     accesslog:
       directory: logs
+jwt-security:
+  secret: PseudoSecret-Pseudosecret-Please-Use-Ur-Own-Key-PseudoSecret-Pseudosecret
 ---
 spring:
   profiles: test

@@ -13,10 +13,7 @@ import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-import osahner.config.SecurityConstants.EXPIRATION_TIME
-import osahner.config.SecurityConstants.HEADER_STRING
-import osahner.config.SecurityConstants.SECRET
-import osahner.config.SecurityConstants.TOKEN_PREFIX
+import osahner.config.SecurityProperties
 import java.io.IOException
 import java.util.*
 import javax.servlet.FilterChain
@@ -24,7 +21,10 @@ import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class JWTAuthenticationFilter(private val _authenticationManager: AuthenticationManager) :
+class JWTAuthenticationFilter(
+  private val authManager: AuthenticationManager,
+  private val securityProperties: SecurityProperties
+) :
   UsernamePasswordAuthenticationFilter() {
 
   @Throws(AuthenticationException::class)
@@ -38,7 +38,7 @@ class JWTAuthenticationFilter(private val _authenticationManager: Authentication
       val creds = mapper
         .readValue<osahner.domain.User>(req.inputStream)
 
-      _authenticationManager.authenticate(
+      authManager.authenticate(
         UsernamePasswordAuthenticationToken(
           creds.username,
           creds.password,
@@ -64,9 +64,9 @@ class JWTAuthenticationFilter(private val _authenticationManager: Authentication
     val token = Jwts.builder()
       .setSubject((auth.principal as User).username)
       .claim("auth", claims)
-      .setExpiration(Date(System.currentTimeMillis() + EXPIRATION_TIME))
-      .signWith(Keys.hmacShaKeyFor(SECRET.toByteArray()), SignatureAlgorithm.HS512)
+      .setExpiration(Date(System.currentTimeMillis() + securityProperties.expirationTime))
+      .signWith(Keys.hmacShaKeyFor(securityProperties.secret.toByteArray()), SignatureAlgorithm.HS512)
       .compact()
-    res.addHeader(HEADER_STRING, TOKEN_PREFIX + token)
+    res.addHeader(securityProperties.headerString, securityProperties.tokenPrefix + token)
   }
 }

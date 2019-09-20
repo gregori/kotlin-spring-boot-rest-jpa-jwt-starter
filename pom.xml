@@ -22,12 +22,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <kotlin.version>1.3.41</kotlin.version>
+    <kotlin.version>1.3.50</kotlin.version>
 
     <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
-    <junit-jupiter.version>5.4.0</junit-jupiter.version>
+    <junit-jupiter.version>5.5.2</junit-jupiter.version>
 
-    <jjwt.version>0.10.6</jjwt.version>
+    <jjwt.version>0.10.7</jjwt.version>
     <graphql-java.version>11.0</graphql-java.version>
     <graphql-java-tools.version>5.2.4</graphql-java-tools.version>
     <graphql-spring-boot-starter.version>5.10.0</graphql-spring-boot-starter.version>
@@ -60,6 +60,11 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jersey</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
     </dependency>
 
     <dependency>
@@ -160,8 +165,8 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>src/main/kotlin</sourceDirectory>
-    <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+    <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+    <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>

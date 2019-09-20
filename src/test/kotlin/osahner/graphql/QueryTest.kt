@@ -106,7 +106,7 @@ class GraphqlServiceApplicationTest(
 
 
   fun forJson(json: String, headers: HttpHeaders): HttpEntity<Any> {
-    headers.contentType = MediaType.APPLICATION_JSON_UTF8
+    headers.contentType = MediaType.APPLICATION_JSON
     return HttpEntity(json, headers)
   }
 }
