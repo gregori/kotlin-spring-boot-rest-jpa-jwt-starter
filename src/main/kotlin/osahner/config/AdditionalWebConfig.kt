@@ -25,7 +25,9 @@ class AdditionalWebConfig : WebMvcConfigurer {
       "Access-Control-Request-Headers"
     )
     configuration.exposedHeaders =
-      listOf("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Authorization")
+      listOf(
+        "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Authorization", "Content-Disposition"
+      )
     configuration.allowCredentials = true
     configuration.maxAge = 3600
 
