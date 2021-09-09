@@ -11,7 +11,7 @@
 
   <groupId>osahner</groupId>
   <artifactId>kotlin-spring-boot-rest-jpa-jwt-starter</artifactId>
-  <version>0.8.1-SNAPSHOT</version>
+  <version>0.8.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>kotlin spring-boot 2 rest/jpa/jwt starter</name>
@@ -147,75 +147,19 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <executable>true</executable>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>build-info</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven-surefire-plugin.version}</version>
-        <configuration>
-          <failIfNoTests>true</failIfNoTests>
-          <includes>
-            <include>**/*Test.java</include>
-            <include>**/*Test.kt</include>
-            <include>**/*Tests.java</include>
-            <include>**/*Tests.kt</include>
-          </includes>
-          <properties>
-            <excludeTags>integration-test</excludeTags>
-          </properties>
-          <systemPropertyVariables>
-            <SPRING_PROFILES_ACTIVE>test</SPRING_PROFILES_ACTIVE>
-          </systemPropertyVariables>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit-jupiter.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin>
-        <artifactId>kotlin-maven-plugin</artifactId>
         <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
         <configuration>
+          <args>
+            <arg>-Xjsr305=strict</arg>
+          </args>
           <compilerPlugins>
             <plugin>spring</plugin>
             <plugin>jpa</plugin>
           </compilerPlugins>
-          <jvmTarget>${java.version}</jvmTarget>
         </configuration>
-        <executions>
-          <execution>
-            <id>compile</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>test-compile</id>
-            <phase>test-compile</phase>
-            <goals>
-              <goal>test-compile</goal>
-            </goals>
-          </execution>
-        </executions>
         <dependencies>
           <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
