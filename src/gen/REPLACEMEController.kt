@@ -19,23 +19,7 @@ class REPLACEMEController(private val replacemeService: REPLACEMEService) {
 
   @GetMapping(value = ["/export"])
   @PreAuthorize("hasAnyAuthority('ADMIN_USER', 'STANDARD_USER')")
-  fun export(): ResponseEntity<ByteArrayResource> {
-    val headers = HttpHeaders().apply {
-      add("Content-Disposition", "filename=\"Export-${Date().time}.xls\"")
-    }
-    val bos = ByteArrayOutputStream()
-    bos.use {
-      replacemeService.toWorkbook().apply {
-        write(bos)
-      }
-    }
-    val resource = ByteArrayResource(bos.toByteArray())
-    return ResponseEntity.ok()
-      .headers(headers)
-      .contentLength(resource.contentLength())
-      .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-      .body(resource)
-  }
+  fun export(): ResponseEntity<ByteArrayResource> = replacemeService.export()
 
   @GetMapping(value = ["", "/"])
   fun list() = replacemeService.list().map { it.toDTO() }

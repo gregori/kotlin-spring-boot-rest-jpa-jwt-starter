@@ -24,12 +24,13 @@ class REPLACEMEService(
   fun import(file: MultipartFile): Collection<REPLACEME> =
     csvImportService.importREPLACEME(file).also { replacemeRepository.saveAll(it) }
 
-  fun toWorkbook(): Workbook {
+  fun export(): ResponseEntity<ByteArrayResource> {
     val result = replacemeRepository.findAll().map { it.toDTO() }
-    return poiExportService.buildExcelDocument(
+    val wb = poiExportService.buildExcelDocument(
       "Export REPLACEME List",
       listOf("id"),
       result
     )
+    return poiExportService.toResponseEntity(wb, "REPLACEME-List")
   }
 }
