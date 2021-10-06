@@ -7,6 +7,7 @@ services:
   - mysql
 sudo: required
 before_install:
+  - mvn clean
   - sudo mysql_upgrade --force
   - sudo mysql -e "CREATE DATABASE starterspringkotlin;GRANT ALL ON starterspringkotlin.* TO starterspringkotlin@localhost IDENTIFIED BY 'starterspringkotlin';FLUSH PRIVILEGES;"
   - sudo service mysql restart

@@ -1,5 +1,6 @@
 package osahner
 
+import org.junit.Before
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.MethodOrderer
@@ -14,6 +15,7 @@ import org.springframework.boot.test.web.client.getForEntity
 import org.springframework.boot.test.web.client.getForObject
 import org.springframework.boot.test.web.client.postForEntity
 import org.springframework.http.*
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
@@ -23,6 +25,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @ActiveProfiles("test")
 internal class IndexControllerTest(@Autowired private val restTemplate: TestRestTemplate) {
   val loginForm = hashMapOf("username" to "john.doe", "password" to "test1234")
+
+  @Before
+  fun setup() {
+    restTemplate.restTemplate.requestFactory = HttpComponentsClientHttpRequestFactory()
+  }
 
   @Test
   @Order(1)

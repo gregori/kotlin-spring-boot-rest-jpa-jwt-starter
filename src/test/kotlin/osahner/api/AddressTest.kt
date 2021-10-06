@@ -4,12 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.poifs.filesystem.POIFSFileSystem
+import org.junit.Before
+import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.MethodOrderer
-import org.junit.jupiter.api.Order
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestMethodOrder
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -17,6 +15,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.postForEntity
 import org.springframework.core.io.FileSystemResource
 import org.springframework.http.*
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.util.LinkedMultiValueMap
@@ -33,6 +32,12 @@ internal class AddressTest(
   @Autowired private val mapper: ObjectMapper
 ) {
   val loginForm = hashMapOf("username" to "admin.admin", "password" to "test1234")
+
+
+  @Before
+  fun setup() {
+    restTemplate.restTemplate.requestFactory = HttpComponentsClientHttpRequestFactory()
+  }
 
   fun authHeader(): HttpHeaders {
     val auth = restTemplate.postForEntity<String>("/login", loginForm)
