@@ -1,4 +1,4 @@
-package osahner.api.address
+package tech.gregori.api.address
 
 import com.opencsv.bean.CsvBindByName
 import java.time.LocalDateTime

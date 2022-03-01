@@ -1,8 +1,8 @@
-package osahner.api.address
+package tech.gregori.api.address
 
-import osahner.toArray
-import osahner.toMap
-import osahner.writeValueAsString
+import tech.gregori.toArray
+import tech.gregori.toMap
+import tech.gregori.writeValueAsString
 import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

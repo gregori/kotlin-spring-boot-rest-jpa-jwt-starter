@@ -1,5 +1,5 @@
 FROM adoptopenjdk/openjdk11-openj9:alpine-slim
-MAINTAINER Oliver Sahner <osahner@gmail.com>
+LABEL maintainer="Rodrigo Gregori <rodrigo@gregori.tech>"
 
 ARG JAR_FILE
 ARG SPRING_BOOT_VERSION

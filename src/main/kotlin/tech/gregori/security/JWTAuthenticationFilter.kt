@@ -1,4 +1,4 @@
-package osahner.security
+package tech.gregori.security
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -12,8 +12,8 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-import osahner.add
-import osahner.config.SecurityProperties
+import tech.gregori.add
+import tech.gregori.config.SecurityProperties
 import java.io.IOException
 import java.util.*
 import javax.servlet.FilterChain
@@ -35,7 +35,7 @@ class JWTAuthenticationFilter(
       val mapper = jacksonObjectMapper()
 
       val creds = mapper
-        .readValue<osahner.domain.User>(req.inputStream)
+        .readValue<tech.gregori.domain.User>(req.inputStream)
 
       authManager.authenticate(
         UsernamePasswordAuthenticationToken(

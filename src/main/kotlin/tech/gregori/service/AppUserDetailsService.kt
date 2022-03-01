@@ -1,4 +1,4 @@
-package osahner.service
+package tech.gregori.service
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority

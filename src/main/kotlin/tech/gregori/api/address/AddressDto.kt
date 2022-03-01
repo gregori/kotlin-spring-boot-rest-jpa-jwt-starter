@@ -1,4 +1,4 @@
-package osahner.api.address
+package tech.gregori.api.address
 
 import java.time.LocalDateTime
 

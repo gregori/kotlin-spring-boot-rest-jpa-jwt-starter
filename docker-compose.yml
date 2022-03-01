@@ -1,7 +1,7 @@
 version: '2'
 services:
   spring-boot-rest-jpa-jwt-starter:
-    image: osahner/kotlin-spring-boot-rest-jpa-jwt-starter
+    image: rodhabib/kotlin-spring-boot-rest-jpa-jwt-starter
     depends_on:
       - local-mysql-database
     ports:

@@ -9,7 +9,7 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
-  <groupId>osahner</groupId>
+  <groupId>tech.gregori</groupId>
   <artifactId>kotlin-spring-boot-rest-jpa-jwt-starter</artifactId>
   <version>0.8.1-SNAPSHOT</version>
   <packaging>jar</packaging>

@@ -1,4 +1,4 @@
-package osahner.api.address
+package tech.gregori.api.address
 
 import org.springframework.core.io.ByteArrayResource
 import org.springframework.http.ResponseEntity

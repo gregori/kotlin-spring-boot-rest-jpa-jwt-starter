@@ -1,4 +1,4 @@
-package osahner.security
+package tech.gregori.security
 
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
-import osahner.config.SecurityProperties
+import tech.gregori.config.SecurityProperties
 import java.io.IOException
 import javax.servlet.FilterChain
 import javax.servlet.ServletException

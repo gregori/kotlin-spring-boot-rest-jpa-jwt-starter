@@ -1,4 +1,4 @@
-package osahner
+package tech.gregori
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration

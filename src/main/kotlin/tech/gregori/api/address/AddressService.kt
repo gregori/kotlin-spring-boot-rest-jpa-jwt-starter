@@ -1,10 +1,10 @@
-package osahner.api.address
+package tech.gregori.api.address
 
 import org.springframework.core.io.ByteArrayResource
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
-import osahner.service.PoiExportService
+import tech.gregori.service.PoiExportService
 import java.util.*
 
 @Component

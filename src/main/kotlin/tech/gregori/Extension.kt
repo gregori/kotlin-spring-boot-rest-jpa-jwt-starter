@@ -1,4 +1,4 @@
-package osahner
+package tech.gregori
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue

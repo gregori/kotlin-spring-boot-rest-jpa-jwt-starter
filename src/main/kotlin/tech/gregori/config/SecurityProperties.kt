@@ -1,4 +1,4 @@
-package osahner.config
+package tech.gregori.config
 
 import org.hibernate.validator.constraints.Length
 import org.springframework.boot.context.properties.ConfigurationProperties

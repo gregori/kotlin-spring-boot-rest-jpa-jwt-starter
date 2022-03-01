@@ -1,4 +1,4 @@
-package osahner.api.address
+package tech.gregori.api.address
 
 import org.springframework.data.jpa.repository.JpaRepository
 

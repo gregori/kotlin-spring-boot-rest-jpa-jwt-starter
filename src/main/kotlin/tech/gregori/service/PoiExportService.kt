@@ -1,4 +1,4 @@
-package osahner.service
+package tech.gregori.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.poi.hssf.usermodel.HSSFDataFormat
@@ -11,7 +11,7 @@ import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
 import org.springframework.stereotype.Component
-import osahner.toDate
+import tech.gregori.toDate
 import java.io.ByteArrayOutputStream
 import java.time.LocalDate
 import java.time.LocalDateTime

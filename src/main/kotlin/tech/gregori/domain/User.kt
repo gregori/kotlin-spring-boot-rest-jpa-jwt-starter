@@ -1,6 +1,6 @@
 @file:Suppress("unused", "unused")
 
-package osahner.domain
+package tech.gregori.domain
 
 import javax.persistence.*
 
